@@ -1,0 +1,5 @@
+{
+  "name": "Google Ads Generator",
+  "description": "Ein KI-gestütztes Tool zur Erstellung und Vorschau von Google Ads Anzeigentexten mit Exportfunktion.",
+  "requestFramePermissions": []
+}
