@@ -11,6 +11,21 @@
         font-family: 'Roboto', sans-serif;
         background-color: #f3f4f6;
       }
+      #mount-error {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        text-align: center;
+        z-index: 9999;
+        max-width: 90%;
+        width: 400px;
+      }
     </style>
   <script type="importmap">
 {
@@ -26,6 +41,23 @@
 </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    
+    <!-- Mount-Checker: Zeigt Fehlermeldung, wenn React nach 3s nicht geladen ist -->
+    <div id="mount-error">
+      <h2 class="text-xl font-bold text-red-600 mb-2">Ladefehler</h2>
+      <p class="text-gray-600 mb-4">Die Anwendung konnte nicht initialisiert werden. Dies kann an einer fehlerhaften Skriptverbindung oder Browser-Inkompatibilität liegen.</p>
+      <button onclick="window.location.reload()" class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition-colors">Seite neu laden</button>
+    </div>
+
+    <script>
+      setTimeout(() => {
+        const root = document.getElementById('root');
+        if (root && !root.hasChildNodes()) {
+          document.getElementById('mount-error').style.display = 'block';
+        }
+      }, 3000);
+    </script>
+
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>
